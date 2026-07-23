@@ -1,0 +1,1 @@
+{"name":"news-growth-experiment-os","private":true,"type":"module","scripts":{"test":"node --test tests/core.test.mjs"}}
