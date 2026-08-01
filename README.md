@@ -1,76 +1,36 @@
 # News Growth Experiment OS
 
-A product-management portfolio prototype for an AI-enabled news team: turn audience insights into a prioritized, measurable experiment backlog.
+A product-management exercise for an AI-enabled news growth team. The prototype turns a pile of plausible ideas into an experiment backlog with visible assumptions about reach, impact, confidence, effort, and AI fit.
 
-![Status](https://img.shields.io/badge/status-prototype-5B5BD6) ![No build step](https://img.shields.io/badge/build-none-success)
+I built it to practice making prioritization logic inspectable. The score is not an oracle and it is not an automatic roadmap; it is a way for a PM, editor, designer, and engineer to disagree in the open.
 
-## Why this exists
-News growth teams often receive a flood of plausible ideas—better onboarding, smarter newsletter recommendations, personalized paywalls—without a shared way to compare them. This prototype makes the trade-offs explicit:
+## What this explores
 
-- **Reach:** how many eligible readers the idea can affect
-- **Impact:** expected movement in a north-star metric
-- **Confidence:** strength of evidence, not enthusiasm
-- **Effort:** engineering/design/ops cost
-- **AI fit:** whether AI creates a meaningful advantage, with human review intact
+- Transparent RICE-style prioritization
+- Experiment briefs and measurable hypotheses
+- News-specific guardrails such as unsubscribe rate and editorial workload
+- Keeping AI assistance bounded by human review
+- Testable product logic separated from the UI
 
-The app ranks candidates with a transparent RICE-style score and produces a compact experiment brief a cross-functional team can debate.
+## Run it
 
-## Product case study
-**Problem:** editorial and growth teams need to decide which AI-assisted ideas deserve a two-week experiment.
-
-**Primary user:** growth PM / audience editor.
-
-**North-star metric:** qualified newsletter subscriber activation (a subscriber who opens at least one issue in their first seven days).
-
-**Guardrails:** unsubscribe rate, spam complaints, editorial workload, and recommendation diversity.
-
-**MVP decision:** prioritize a human-reviewed “follow this developing story” newsletter module over a black-box personalization system. It is smaller, explainable, and testable.
-
-See [`docs/product-brief.md`](docs/product-brief.md) for assumptions, metrics, and the discovery plan.
-
-## Run locally
-No package install is required.
+No package install is required:
 
 ```bash
 python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
-Or open `index.html` directly in a modern browser.
-
-## Test
+Run the business-rule tests with:
 
 ```bash
 node --test tests/core.test.mjs
 ```
 
-## What to look at
+## Files worth opening
 
-| File | Purpose |
-| --- | --- |
-| `index.html` | usable prototype with seed backlog |
-| `src/core.js` | ranking, score, and experiment-brief logic |
-| `src/app.js` | thin UI layer and accessible interactions |
-| `docs/product-brief.md` | PM framing, hypotheses, and measurement |
-| `tests/core.test.mjs` | executable business-rule tests |
+- `src/core.js` — scoring and brief-generation rules
+- `src/app.js` — the small UI layer
+- `docs/product-brief.md` — the product reasoning behind the prototype
 
-## Demo workflow
-1. Adjust the importance weights in the control panel.
-2. Add an experiment with the short form.
-3. Select a row to inspect its generated brief.
-4. Use the score as a conversation starter—not an automatic roadmap.
-
-## Portfolio talking points
-- I translated ambiguous AI-news opportunities into an explicit prioritization model.
-- I paired a growth metric with reader and editorial guardrails.
-- I kept the AI role bounded: assistance and recommendations, with accountability remaining human.
-- I made the scoring logic testable and inspectable rather than hiding it behind a dashboard.
-
-## Next iterations
-- Import anonymized newsletter cohort data.
-- Add a pre-registration checklist and experiment status workflow.
-- Connect to a warehouse/query layer and show confidence intervals.
-- Run usability sessions with an audience editor and lifecycle marketer.
-
-## License
-MIT. Demo data is fictional and intended only for portfolio use.
+The data is fictional. The interesting part is the decision model, not the demo numbers.
